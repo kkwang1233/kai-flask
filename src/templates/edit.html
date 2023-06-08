@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Edit Campaign</h1>
+    <form method="POST" action="/edit/{{ campaign_id }}" class="needs-validation">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ campaign.name }}" required>
+            <div class="invalid-feedback">Please enter a name.</div>
+        </div>
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary {% if campaign.status == 'Active' %}active{% endif %}">
+                    <input type="radio" name="status" value="Active" autocomplete="off" {% if campaign.status == 'Active' %}checked{% endif %} required> Active
+                </label>
+                <label class="btn btn-secondary {% if campaign.status == 'Inactive' %}active{% endif %}">
+                    <input type="radio" name="status" value="Inactive" autocomplete="off" {% if campaign.status == 'Inactive' %}checked{% endif %} required> Inactive
+                </label>
+                <label class="btn btn-secondary {% if campaign.status == 'Pending' %}active{% endif %}">
+                    <input type="radio" name="status" value="Pending" autocomplete="off" {% if campaign.status == 'Pending' %}checked{% endif %} required> Pending
+                </label>
+            </div>
+            <div class="invalid-feedback">Please select a status.</div>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+    </form>
+{% endblock %}

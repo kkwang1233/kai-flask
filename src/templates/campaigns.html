@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="text-center mb-4">Ad Campaigns</h1>
+    {% if campaigns %}
+        <ul class="list-group">
+            {% for campaign in campaigns %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <span>{{ campaign.name }}</span>
+                    <span class="badge badge-primary">{{ campaign.status }}</span>
+                    <div class="btn-group" role="group">
+                        <a href="/edit/{{ loop.index0 }}" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="/delete/{{ loop.index0 }}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-center">There are no current campaigns.</p>
+    {% endif %}
+{% endblock %}
